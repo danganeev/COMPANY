@@ -41,7 +41,7 @@ $res1 = mysqli_query($mysqli, "select PositionName from POSITIONS");
 while ($row0 = mysqli_fetch_array($res1))
     {
 ?>
-                        <option value="<?php echo $row0['PositionName'];?>" <?php if ($row0[ 'PositionName']==$ row[ 'PositionName']) echo "selected = 'selected'"; ?>>
+                        <option value="<?php echo $row0['PositionName'];?>" <?php if ($row0[ 'PositionName']==$row[ 'PositionName']) echo "selected = 'selected'"; ?>>
                             <?php echo $row0["PositionName"];?>
                         </option>
 
