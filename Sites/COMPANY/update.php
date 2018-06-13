@@ -4,147 +4,77 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Update an employee</title>
-    <style>
-        body {
-            font-family: arial, sans-serif;
-        }
-        
-        label {
-            width: 100px;
-            float: left;
-        }
-        
-        .form-style {
-            max-width: 25%;
-            background: #FAFAFA;
-            padding: 30px;
-            margin: 50px auto;
-            box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
-            border-radius: 10px;
-            border: 10px solid #305A72;
-        }
-        
-        .form-style ul {
-            padding: 0;
-            margin: 0;
-            list-style: none;
-        }
-        
-        .form-style ul li label {
-            font-family: arial, sans-serif;
-            font-size: 16px;
-            display: block;
-            margin-bottom: 10px;
-        }
-        
-        .form-style ul li {
-            display: block;
-            margin-bottom: 10px;
-            min-height: 35px;
-        }
-        
-        .form-style ul li .field-style {
-            box-sizing: border-box;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            padding: 8px;
-            outline: none;
-            border: 1px solid #B0CFE0;
-            -webkit-transition: all 0.30s ease-in-out;
-            -moz-transition: all 0.30s ease-in-out;
-            -ms-transition: all 0.30s ease-in-out;
-            -o-transition: all 0.30s ease-in-out;
-        }
-        
-        .form-style ul li .field-style:focus {
-            box-shadow: 0 0 5px #B0CFE0;
-            border: 1px solid #B0CFE0;
-        }
-        
-        .form-style ul li .field-split {
-            width: 60%;
-        }
-        
-        .form-style ul li input.align-left {
-            float: left;
-        }
-        
-        .form-style ul li input.align-right {
-            float: right;
-        }
-        
-        .form-style ul li select.align-right {
-            float: right;
-        }
-        
-        .form-style ul li input[type="button"],
-        .form-style ul li input[type="submit"] {
-            -moz-box-shadow: inset 0px 1px 0px 0px #3985B1;
-            -webkit-box-shadow: inset 0px 1px 0px 0px #3985B1;
-            box-shadow: inset 0px 1px 0px 0px #3985B1;
-            background-color: #216288;
-            border: 1px solid #17445E;
-            display: inline-block;
-            cursor: pointer;
-            color: #FFFFFF;
-            padding: 8px 18px;
-            text-decoration: none;
-            font: 12px Arial, Helvetica, sans-serif;
-        }
-        
-        .form-style ul li input[type="button"]:hover,
-        .form-style ul li input[type="submit"]:hover {
-            background: linear-gradient(to bottom, #2D77A2 5%, #337DA8 100%);
-            background-color: #28739E;
-        }
-    </style>
+    <link href="style.css" rel="stylesheet" type="text/css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script>
-//        $(function () {
-//        $("#oldname").change(function() {
-//        $("#fullname").load("response.php?oldname=" + $("#oldname").val());
-//        $('#fullname').val();
-//        });
-//        });
-//        
-//        $(function () {
-//
-//            $("#oldname").bind("change", function () {
-//                setTimeout(function () {
-//                    //get the value of the input text
-//                    var data = $('#oldname').val();
-//                    //set the new value of the input text without special characters
-//                    $("#fullname").load("response.php?oldname=" + $("#oldname").val());
-//                    $('#fullname').val(localStorage.fullname);
-//                    //$('#fullname').val(localStorage.fullname);
-//                });
-//
-//            });
-//        });
-//        
-//        $(function () {
-//        $("#oldname").bind("change", function () {
-//			e.preventDefault();
-//			
-//			var data = $('#oldname').val();
-//            jQuery.ajax({
-//			type: "POST", // HTTP method POST or GET
-//			url: "response.php?oldname=" + $("#oldname").val(), //Where to make Ajax calls
-//			dataType:"text", // Data type, HTML, json etc.
-//			data:data, //Form variables
-//			success:function(response){
-//				$('#fullname').val(localStorage.fullname);
-//                alert(localStorage.fullname);
-//			},
-//			error:function (xhr, ajaxOptions, thrownError){
-//				alert(thrownError);
-//			}
-//			});
-//	});
-//            });
-        
-        
-        
+        $(function () {
+            $("#oldname").change(function () {
+                if (window.XMLHttpRequest) {
+                    // code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                } else {
+                    // code for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("replaceable").innerHTML = this.responseText;
+                    }
+                };
+                xmlhttp.open("GET", "response.php?oldname=" + $("#oldname").val(), true);
+                xmlhttp.send();
+            });
+        });
+
+
+
+
+        //        $(function () {
+        //        $("#oldname").change(function() {
+        //        $("#fullname").load("response.php?oldname=" + $("#oldname").val());
+        //        $('#fullname').val();
+        //        $('#position option:contains("it\'s me")').prop('selected',true);        
+        //        });
+        //        });
+        //        
+        //        $(function () {
+        //
+        //            $("#oldname").bind("change", function () {
+        //                setTimeout(function () {
+        //                    //get the value of the input text
+        //                    var data = $('#oldname').val();
+        //                    //set the new value of the input text without special characters
+        //                    $("#fullname").load("response.php?oldname=" + $("#oldname").val());
+        //                    $('#fullname').val(localStorage.fullname);
+        //                    //$('#fullname').val(localStorage.fullname);
+        //                });
+        //
+        //            });
+        //        });
+        //        
+        //        $(function () {
+        //        $("#oldname").bind("change", function () {
+        //			e.preventDefault();
+        //			
+        //			var data = $('#oldname').val();
+        //            jQuery.ajax({
+        //			type: "POST", // HTTP method POST or GET
+        //			url: "response.php?oldname=" + $("#oldname").val(), //Where to make Ajax calls
+        //			dataType:"text", // Data type, HTML, json etc.
+        //			data:data, //Form variables
+        //			success:function(response){
+        //				$('#fullname').val(localStorage.fullname);
+        //                alert(localStorage.fullname);
+        //			},
+        //			error:function (xhr, ajaxOptions, thrownError){
+        //				alert(thrownError);
+        //			}
+        //			});
+        //	});
+        //            });
+
+
+
         $(function () {
 
             $("#fullname").bind("change keypress paste click", function () {
@@ -263,8 +193,11 @@ $oldname = strip_tags(@$_POST['oldname']);
 
 if ($add) {
 
-if ((empty($_POST['fullname'])) || (empty($_POST['position'])) || (empty($_POST['bdate'])) || (empty($_POST['sex']))){
-    echo "Please fill in all the fields!";
+if (empty($_POST['oldname']) || $_POST['oldname'] == ''){
+    echo "<p>You must first choose an employee!</p>";
+}    
+else if ((empty($_POST['fullname'])) || (empty($_POST['position'])) || (empty($_POST['bdate'])) || (empty($_POST['sex']))){
+    echo "Fill in all the fields!";
 }
 else if (!preg_match('/^[a-zA-Zа-яА-ЯїЇєЄіІёЁ\s-]*$/u', $new_employee->name, $match)){
     echo "Name can consist of letters and spaces only";
@@ -304,6 +237,7 @@ echo "Employee '$new_employee->name' already exists. Choose a different name";
                     <li>
                         <label for="oldname">Old Name:</label>
                         <select name="oldname" class="field-style field-split align-right" id="oldname">
+                            <option value=""></option>
 
                             <?php
 $res0 = mysqli_query($mysqli, "select FullName from EMPLOYEE");
@@ -320,42 +254,42 @@ while ($row = mysqli_fetch_array($res0))
 ?>
                         </select>
                     </li>
+                    <div id="replaceable">
+                        <li>
+                            <label for="fullname">New Name:</label>
+                            <input name="fullname" type="text" class="field-style field-split align-right" id="fullname" size="30" required/>
+                        </li>
+                        <li>
+                            <label for="position">Position:</label>
+                            <select name="position" class="field-style field-split align-right" id="position">
 
-                    <li>
-                        <label for="fullname">New Name:</label>
-                        <input name="fullname" type="text" class="field-style field-split align-right" id="fullname" size="30" required/>
-                    </li>
-                    <li>
-                        <label for="position">Position:</label>
-                        <select name="position" class="field-style field-split align-right" id="position">
-
-                            <?php
+                                <?php
 $res1 = mysqli_query($mysqli, "select PositionName from POSITIONS");
  
 while ($row = mysqli_fetch_array($res1))
     {
 ?>
-                                <option value="<?php echo $row['PositionName'];?>">
-                                    <?php echo $row["PositionName"];?>
-                                </option>
+                                    <option value="<?php echo $row['PositionName'];?>">
+                                        <?php echo $row["PositionName"];?>
+                                    </option>
 
-                                <?php    
+                                    <?php    
     }
 ?>
-                        </select>
-                    </li>
-                    <li>
-                        <label for="bdate">Year of birth:</label>
-                        <input name="bdate" type="text" class="field-style field-split align-right" id="bdate" size="4" maxlength="4" required/>
-                    </li>
-                    <li>
-                        <label for="sex">Sex:</label>
-                        <select name="sex" class="field-style field-split align-right">
-                            <option value="M">M</option>
-                            <option value="F">F</option>
-                        </select>
-                    </li>
-
+                            </select>
+                        </li>
+                        <li>
+                            <label for="bdate">Year of birth:</label>
+                            <input name="bdate" type="text" class="field-style field-split align-right" id="bdate" size="4" maxlength="4" required/>
+                        </li>
+                        <li>
+                            <label for="sex">Sex:</label>
+                            <select name="sex" class="field-style field-split align-right">
+                                <option value="M">M</option>
+                                <option value="F">F</option>
+                            </select>
+                        </li>
+                    </div>
                     <li>
                         <input name="add" type="submit" value="Submit" />
                     </li>

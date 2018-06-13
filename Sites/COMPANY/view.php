@@ -4,37 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>View employees</title>
-    <style>
-        body {
-            font-family: arial, sans-serif;
-        }
-        
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            border-radius: 10px;
-            border: 10px solid #305A72;
-        }
-        
-        td,
-        th {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-        
-        tr:nth-child(even) {
-            background-color: #dddddd;
-        }
-        
-        .table-hover>tbody>tr:hover {
-            background-color: #f5f5f5
-        }
-        
-        .hidden {
-            display: none;
-        }
-    </style>
+    <link href="style_view.css" rel="stylesheet" type="text/css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script>
         function showhide(that, oldword, newword) {
